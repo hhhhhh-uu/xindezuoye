@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <MyHeader @clicks=" header"></MyHeader>
+    <MyMain :list="list" @del="shuns"></MyMain>
+    <MyFooter @shuns="shuns"></MyFooter>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyHeader from "./components/MyHeader.vue"
+import MyMain from "./components/MyMain.vue"
+import MyFooter from "./components/MyFooter.vue"
 export default {
   name: 'App',
+  data() {
+    return {
+      list: [],
+    }
+  },
+  created() {
+    this.shuns()
+  },
+  methods: {
+    header(val){
+      this.list = this.list.filter((ele) => {
+        return ele.bookname == val;
+      });
+    },
+    shuns(){
+      this.$axios({
+      url:"/api/getbooks"
+    }).then(res => {
+      console.log(res);
+      this.list = res.data.data
+    })
+    }
+     
+  },
   components: {
-    HelloWorld
+    MyHeader,
+    MyMain,
+    MyFooter,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
