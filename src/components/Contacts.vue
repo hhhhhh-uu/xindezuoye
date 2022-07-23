@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li btn:><router-link to="/contacts2">All contacts</router-link></li>
+      <li><router-link to="/contacts2">All contacts</router-link></li>
       <li><router-link to="/alice">Alice</router-link></li>
       <li><router-link to="/bod">Bod</router-link></li>
     </ul>
@@ -17,9 +17,16 @@ export default {
   name: "AA",
   data() {
     return {
-      
+      arr:["/contacts2","/alice","/bod"]
     }
   },
+  methods:{
+    btn(){
+       this.$router.push({
+        path:this.arr[Math.floor(Math.random()*3)]
+       })
+    }
+  }
 };
 </script>
 
