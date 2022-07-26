@@ -4,12 +4,10 @@
         <div style="padding-bottom: 48px">
             <router-view></router-view>
         </div>
-        <div>
-            <van-tabbar route>
+        <van-tabbar route>
             <van-tabbar-item replace icon="home-o" to="/layout/home">首页</van-tabbar-item>
             <van-tabbar-item replace icon="search" to="/layout/search">搜索</van-tabbar-item>
-            </van-tabbar>
-        </div>
+        </van-tabbar>
     </div>
 </template>
 
